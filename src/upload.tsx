@@ -1,0 +1,50 @@
+import { Upload as UploadIcon } from 'lucide-react';
+import { useRef } from 'react';
+import { getTicketData } from './services/get-ticket-data';
+import { getTmpImageUrl } from './services/get-tmp-image';
+import { useTicketStore } from './store/useTicketStore';
+
+export const Upload = () => {
+  const { setTicket, setLoading } = useTicketStore();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Por favor selecciona una imagen');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const imageUrl = await getTmpImageUrl(file);
+      const ticketData = await getTicketData(imageUrl);
+      setTicket(ticketData);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    } finally {
+      setLoading(false);
+      fileInputRef.current!.value = '';
+    }
+  };
+
+  return (
+    <section className="border border-neutral-300 rounded-xl p-4 mt-4 flex flex-col gap-4">
+      <button className="btn flex items-center" onClick={() => fileInputRef.current?.click()}>
+        <UploadIcon className="size-8 text-gray-400" />
+        <span className="text-sm text-gray-500 ">Selecciona y sube tu ticket</span>
+      </button>
+      <p className="text-sm text-center text-gray-400">Formatos soportados: JPG, PNG, WEBP</p>
+      <input
+        id="receipt-upload"
+        type="file"
+        accept="image/*"
+        className="hidden"
+        ref={fileInputRef}
+        onChange={handleUpload}
+      />
+    </section>
+  );
+};

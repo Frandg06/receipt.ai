@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+.menu {
+  & :where(li) {
+    & > :not(ul, .menu-title, details, .btn):active,
+    & > :not(ul, .menu-title, details, .btn).menu-active,
+    & > details > summary:active {
+      background-color: var(--color-neutral-300);
+      color: var(--color-neutral-900);
+    }
+  }
+}
+
+input {
+  padding-inline: 0.25rem;
+}
