@@ -145,7 +145,7 @@ export const Ticket = () => {
                       placeHolder="Selecciona usuarios..."
                       classNames={{
                         dropdown: 'col-span-9 border border-0 border-b rounded-none',
-                        button: 'w-full h-full flex items-center justify-between rounded-sm px-2',
+                        button: 'w-full h-full flex items-center justify-between rounded-sm px-2 uppercase',
                         container: 'bg-white shadow-lg rounded-sm border border-neutral-300 mt-1',
                       }}
                       defaultValue={product.users.map((user) => ({
