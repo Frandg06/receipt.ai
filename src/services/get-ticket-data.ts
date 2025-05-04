@@ -30,5 +30,5 @@ export const getTicketData = async (url: string): Promise<Receipt> => {
     throw new Error(resposnse.error.message);
   }
 
-  return resposnse.receipt;
+  return resposnse;
 };
