@@ -4,6 +4,8 @@ import { getTicketData } from './services/get-ticket-data';
 import { getTmpImageUrl } from './services/get-tmp-image';
 import { useTicketStore } from './store/useTicketStore';
 
+const SUPPORTED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/webp'];
+
 export const Upload = () => {
   const { setTicket, setLoading } = useTicketStore();
   const [error, setError] = useState<string | null>(null);
@@ -13,7 +15,7 @@ export const Upload = () => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
+    if (!SUPPORTED_IMAGE_TYPES.includes(file.type)) {
       alert('Por favor selecciona una imagen en formato JPG, PNG o WEBP');
       return;
     }
