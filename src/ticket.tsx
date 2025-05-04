@@ -1,4 +1,4 @@
-import { Loader, Package, Plus, ReceiptText, X } from 'lucide-react';
+import { Euro, Loader, Package, Plus, ReceiptText, X } from 'lucide-react';
 import { useTicketStore } from './store/useTicketStore';
 import { useUsersStore } from './store/userStore';
 import { Dropdown, DropdownItem } from './components/ui/dropdown';
@@ -133,14 +133,17 @@ export const Ticket = () => {
                       onChange={(e) => handleChange(e, product.id)}
                     />
                     <span className="text-gray-500 flex items-center justify-center">x</span>
-                    <input
-                      type="number"
-                      className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 col-span-3"
-                      name={`price`}
-                      value={product.price}
-                      step={0.01}
-                      onChange={(e) => handleChange(e, product.id)}
-                    />
+                    <div className="col-span-3 relative">
+                      <Euro className="absolute size-4 text-neutral-500 bottom-0 top-0 my-auto" />
+                      <input
+                        type="number"
+                        className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 lg:max-w-24 max-w-19 pl-6"
+                        name={`price`}
+                        value={product.price}
+                        step={0.01}
+                        onChange={(e) => handleChange(e, product.id)}
+                      />
+                    </div>
                     <Dropdown
                       placeHolder="Selecciona usuarios..."
                       classNames={{

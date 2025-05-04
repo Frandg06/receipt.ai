@@ -16,4 +16,7 @@
 
 input {
   padding-inline: 0.25rem;
+  &.pl-6 {
+    padding-left: 1.5rem;
+  }
 }
