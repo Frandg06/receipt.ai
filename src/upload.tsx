@@ -20,6 +20,7 @@ export const Upload = () => {
 
     setLoading(true);
     try {
+      setError(null);
       const imageUrl = await getTmpImageUrl(file);
       const ticketData = await getTicketData(imageUrl);
       setTicket(ticketData);
