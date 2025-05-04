@@ -93,6 +93,7 @@ export const Ticket = () => {
             </h2>
             <div className="flex items-center sm:justify-between gap-2 font-mono">
               <input
+                autoComplete="off"
                 type="text"
                 name="nombre"
                 value={ticket?.nombre ?? ''}
@@ -122,10 +123,12 @@ export const Ticket = () => {
                       type="text"
                       name={`name`}
                       value={product.name}
+                      autoComplete="off"
                       className="col-span-7 w-full border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10"
                       onChange={(e) => handleChange(e, product.id)}
                     />
                     <input
+                      autoComplete="off"
                       type="number"
                       name={`quantity`}
                       value={product.quantity}
@@ -136,6 +139,7 @@ export const Ticket = () => {
                     <div className="col-span-3 relative">
                       <Euro className="absolute size-4 text-neutral-500 bottom-0 top-0 my-auto" />
                       <input
+                        autoComplete="off"
                         type="number"
                         className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 lg:max-w-24 max-w-19 pl-6"
                         name={`price`}
@@ -160,16 +164,17 @@ export const Ticket = () => {
                         {users.length > 0 ? (
                           users.map((user) => (
                             <label
-                              htmlFor={user.name}
+                              htmlFor={user.id}
                               key={user.id}
                               className="text-base flex justify-between mt-1 active:bg-neutral-100 cursor-pointer capitalize"
                             >
                               {user.name}
                               <input
+                                autoComplete="off"
                                 type="checkbox"
                                 className="checkbox"
                                 defaultChecked={product.users.some((u) => u.id == user.id)}
-                                name={`${user.id}`}
+                                name={user.id}
                                 onChange={(e) => handleChangeUsers(e, product.id)}
                               />
                             </label>

@@ -44,10 +44,11 @@ export const UserManage = () => {
       </h2>
       <form id="creeate-user-form" className="flex gap-2 py-4" onSubmit={createUser}>
         <input
+          autoComplete="on"
           type="text"
           name="name"
           placeholder="Nombre del usuario"
-          className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 pl-6 col-span-4 w-full font-mono"
+          className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 col-span-4 w-full font-mono"
         />
         <button type="submit" className="btn ">
           Agregar <Plus />

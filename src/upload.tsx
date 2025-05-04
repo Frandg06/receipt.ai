@@ -38,6 +38,7 @@ export const Upload = () => {
       </button>
       <p className="text-sm text-center text-gray-400">Formatos soportados: JPG, PNG, WEBP</p>
       <input
+        autoComplete="off"
         id="receipt-upload"
         type="file"
         accept="image/*"
