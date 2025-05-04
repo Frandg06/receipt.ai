@@ -13,8 +13,8 @@ export const Upload = () => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    if (!file.type.startsWith('image/')) {
-      alert('Por favor selecciona una imagen');
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
+      alert('Por favor selecciona una imagen en formato JPG, PNG o WEBP');
       return;
     }
 
