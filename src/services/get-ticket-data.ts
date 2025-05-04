@@ -26,8 +26,6 @@ export const getTicketData = async (url: string): Promise<Receipt> => {
 
   const resposnse = JSON.parse(response.output_text);
 
-  console.log('resposnse', resposnse.error.message);
-
   if (resposnse?.error?.message) {
     throw new Error(resposnse.error.message);
   }
