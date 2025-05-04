@@ -24,5 +24,13 @@ export const getTicketData = async (url: string): Promise<Receipt> => {
     ],
   });
 
-  return JSON.parse(response.output_text);
+  const resposnse = JSON.parse(response.output_text);
+
+  console.log('resposnse', resposnse.error.message);
+
+  if (resposnse?.error?.message) {
+    throw new Error(resposnse.error.message);
+  }
+
+  return resposnse.receipt;
 };
