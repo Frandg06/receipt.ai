@@ -1,5 +1,5 @@
 import { Upload as UploadIcon } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getTicketData } from './services/get-ticket-data';
 import { getTmpImageUrl } from './services/get-tmp-image';
 import { useTicketStore } from './store/useTicketStore';
@@ -35,6 +35,11 @@ export const Upload = () => {
       fileInputRef.current!.value = '';
     }
   };
+
+  useEffect(() => {
+    setError(null);
+    setLoading(false);
+  }, []);
 
   return (
     <section className="border border-neutral-300 rounded-xl p-4 mt-4 flex flex-col gap-4">
