@@ -91,12 +91,12 @@ export const Ticket = () => {
               <ReceiptText />
               Ticket
             </h2>
-            <div className="flex items-center justify-between gap-2 font-mono">
+            <div className="flex items-center sm:justify-between gap-2 font-mono">
               <input
                 type="text"
                 name="nombre"
                 value={ticket?.nombre ?? ''}
-                className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 md:w-1/2 w-full"
+                className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 sm:w-1/2 w-fit"
                 onChange={(e) => setTicket({ ...ticket!, nombre: e.target.value })}
               />
               <div className="px-1 w-fit border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10">

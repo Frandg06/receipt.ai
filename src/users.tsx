@@ -40,7 +40,7 @@ export const UserManage = () => {
     <section className="flex-col gap-4 rounded-xl border border-neutral-300 p-4 h-fit">
       <h2 className="text-2xl font-semibold flex items-center gap-2">
         <User />
-        Personas que han participado en la compra
+        Participantes
       </h2>
       <form id="creeate-user-form" className="flex gap-2 py-4" onSubmit={createUser}>
         <input
