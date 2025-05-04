@@ -85,13 +85,13 @@ export const Ticket = () => {
           <Loader className="animate-spin h-8 w-8 text-gray-500" />
         </div>
       ) : (
-        <section className="border border-neutral-300 rounded-xl p-4 mt-4 flex flex-col gap-4 overflow-x-auto overflow-y-visible flex-1">
-          <article className="min-w-2xl">
+        <section className="border border-neutral-300 rounded-xl p-4 mt-4 flex flex-col gap-4 flex-1">
+          <article className="md:min-w-xl">
             <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
               <ReceiptText />
               Ticket
             </h2>
-            <div className="flex items-center sm:justify-between gap-2 font-mono">
+            <div className="flex sm:items-center sm:justify-between gap-2 font-mono">
               <input
                 autoComplete="off"
                 type="text"
@@ -104,44 +104,49 @@ export const Ticket = () => {
                 Total: {ticket?.total.toFixed(2) ?? '0.00'}€
               </div>
             </div>
-            <div className="flex items-center gap-4 mt-10">
+            <div className="flex items-center gap-4 mt-10 justify-between sm:justify-start">
               <h3 className="text-md font-semibold flex items-center gap-2 text-xl">
                 <Package /> Productos
               </h3>
               <div className="flex items-center gap-2">
                 <button className="btn flex items-center" onClick={handleAddProduct}>
                   <Plus />
-                  Agregar producto
+                  <span className="text-sm hidden sm:block">Añadir producto</span>
                 </button>
               </div>
             </div>
             <div className="mt-10 space-y-4">
               {ticket &&
                 ticket.products.map((product) => (
-                  <div key={product.id} className="grid grid-cols-24 gap-2 place-content-center font-mono">
+                  <div
+                    key={product.id}
+                    className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-24 gap-2 md:place-content-center font-mono"
+                  >
                     <input
                       type="text"
                       name={`name`}
                       value={product.name}
                       autoComplete="off"
-                      className="col-span-7 w-full border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10"
+                      className="col-span-3 sm:col-span-6 md:col-span-7 w-full border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10"
                       onChange={(e) => handleChange(e, product.id)}
                     />
-                    <input
-                      autoComplete="off"
-                      type="number"
-                      name={`quantity`}
-                      value={product.quantity}
-                      className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 col-span-2"
-                      onChange={(e) => handleChange(e, product.id)}
-                    />
-                    <span className="text-gray-500 flex items-center justify-center">x</span>
-                    <div className="col-span-3 relative">
+                    <div className="md:col-span-3 relative">
+                      <Package className="absolute size-4 text-neutral-500 bottom-0 top-0 my-auto" />
+                      <input
+                        autoComplete="off"
+                        type="number"
+                        name={`quantity`}
+                        value={product.quantity}
+                        className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 lg:max-w-24 max-w-19 pl-6"
+                        onChange={(e) => handleChange(e, product.id)}
+                      />
+                    </div>
+                    <div className="col-span-2 md:col-span-3 relative">
                       <Euro className="absolute size-4 text-neutral-500 bottom-0 top-0 my-auto" />
                       <input
                         autoComplete="off"
                         type="number"
-                        className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 lg:max-w-24 max-w-19 pl-6"
+                        className="border-x-0 border-b border-t-0 rounded-none focus:outline-none focus:border-b-3 min-h-10 w-full lg:max-w-24 sm:max-w-19 pl-6"
                         name={`price`}
                         value={product.price}
                         step={0.01}
@@ -151,8 +156,9 @@ export const Ticket = () => {
                     <Dropdown
                       placeHolder="Selecciona usuarios..."
                       classNames={{
-                        dropdown: 'col-span-9 border border-0 border-b rounded-none',
-                        button: 'w-full h-full flex items-center justify-between rounded-sm px-2 uppercase',
+                        dropdown:
+                          'md:col-span-9 border border-0 border-b rounded-none sm:col-span-3 col-span-2 min-h-10',
+                        button: 'w-full h-full flex items-center justify-between rounded-sm px-2 uppercase truncate',
                         container: 'bg-white shadow-lg rounded-sm border border-neutral-300 mt-1',
                       }}
                       defaultValue={product.users.map((user) => ({
@@ -160,7 +166,7 @@ export const Ticket = () => {
                         label: user.name,
                       }))}
                     >
-                      <DropdownItem className="bg-white w-full min-w-52">
+                      <DropdownItem className="bg-white w-full sm:min-w-52 min-w-36">
                         {users.length > 0 ? (
                           users.map((user) => (
                             <label
@@ -186,7 +192,7 @@ export const Ticket = () => {
                     </Dropdown>
                     <button
                       type="button"
-                      className="text-white bg-red-500 p-2 grid place-content-center rounded-md cursor-pointer hover:bg-red-600 transition-colors duration-200 col-span-2"
+                      className="text-white bg-red-500 p-2 grid place-content-center rounded-md cursor-pointer hover:bg-red-600 transition-colors duration-200 md:col-span-2"
                       onClick={() => handleRemoveProduct(product.id)}
                     >
                       <X className="size-4" />
