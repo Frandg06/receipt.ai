@@ -1,7 +1,11 @@
-export const getTmpImageUrl = async (file: File) => {
+import { Receipt } from "../types/ticket";
+
+export const getTmpImageUrl = async (file: File): Promise<Receipt> => {
+  
   const formData = new FormData();
-  formData.append('file', file);
-  const respose = await fetch(`https://fran-cloud.fdiez86.workers.dev/api/v1/upload`, {
+  formData.append('img', file);
+
+  const respose = await fetch(import.meta.env.VITE_IMAGE_API_URL, {
     headers: {
       Authorization: import.meta.env.VITE_IMAGE_API_KEY,
     },
@@ -15,9 +19,9 @@ export const getTmpImageUrl = async (file: File) => {
 
   const data = await respose.json();
 
-  if (!data || !data?.image?.url) {
+  if (!data.response) {
     throw new Error('Se ha producido un error al subir la imagen');
   }
-
-  return data.image.url;
+  
+  return data.response;
 };

@@ -1,6 +1,5 @@
 import { Upload as UploadIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { getTicketData } from './services/get-ticket-data';
 import { getTmpImageUrl } from './services/get-tmp-image';
 import { useTicketStore } from './store/useTicketStore';
 
@@ -23,8 +22,7 @@ export const Upload = () => {
     setLoading(true);
     try {
       setError(null);
-      const imageUrl = await getTmpImageUrl(file);
-      const ticketData = await getTicketData(imageUrl);
+      const ticketData = await getTmpImageUrl(file);
       setTicket(ticketData);
     } catch (error) {
       if (error instanceof Error) {
