@@ -7,7 +7,7 @@ export const getTmpImageUrl = async (file: File): Promise<Receipt> => {
 
   const respose = await fetch(import.meta.env.VITE_IMAGE_API_URL, {
     headers: {
-      Authorization: import.meta.env.VITE_IMAGE_API_KEY,
+      'X-API-KEY': import.meta.env.VITE_IMAGE_API_KEY,
     },
     method: 'POST',
     body: formData,
